@@ -1,6 +1,8 @@
 <template>
   <q-page class="flex flex-center">
-    <img alt="Quasar logo" src="~assets/quasar-logo-full.svg">
+    <div class="text-h4 text-center text-bold text-blue-10">
+      Quasar Cordova Permissions
+    </div>
   </q-page>
 </template>
 

@@ -14,6 +14,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "cordova-android": "^8.0.0",
+    "cordova-plugin-camera": "^4.1.0",
     "cordova.plugins.diagnostic": "^5.0.0"
   },
   "devDependencies": {
@@ -24,6 +25,9 @@
       "cordova-plugin-whitelist": {},
       "cordova.plugins.diagnostic": {
         "ANDROID_SUPPORT_VERSION": "28.+"
+      },
+      "cordova-plugin-camera": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
       }
     },
     "platforms": [
