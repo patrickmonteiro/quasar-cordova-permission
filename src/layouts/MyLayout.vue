@@ -26,13 +26,21 @@
       content-class="bg-grey-2"
     >
       <q-list>
-        <q-item-label header>Essential Links</q-item-label>
+        <q-item-label header>Menu</q-item-label>
         <q-item clickable to="/camera">
           <q-item-section avatar>
             <q-icon name="camera_alt" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Camera</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item clickable to="/geolocation">
+          <q-item-section avatar>
+            <q-icon name="place" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Geolocation</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>

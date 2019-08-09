@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A Quasar Framework app",
   "productName": "Quasar Cordova Permissions",
-  "cordovaId": "org.cordova.quasar.app",
+  "cordovaId": "br.com.quasarcordovapermission",
   "author": "patryckx",
   "private": true,
   "scripts": {

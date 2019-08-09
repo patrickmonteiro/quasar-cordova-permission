@@ -29,10 +29,11 @@ quasar dev -m cordova -T android
 With the **cordova.plugins.diagnostic** plugin installed on the cordova project, we can request the permissions we want.
 
 * [Camera](#camera)
+* [Location](#location)
 
 ## Camera
 
-In the project there is a boot called camera.js where it exists contains prototype ** $ cameraCapture **.
+In the project there is a boot called camera.js where it exists contains prototype **$cameraCapture**.
 This prototype checks if camera permission is enabled, if not prompts the user for permission.
 
 Once allowed, prototype requests camera use through **window.navigator.camera.getPicture()**.
@@ -80,4 +81,60 @@ and
         <uses-feature android:name="android.hardware.camera" android:required="true" />
     </config-file>
 </platform>
+```
+
+## Location
+
+In the project there is a boot called geolocation.js where it exists contains prototype **$getGeolocation**.
+Once allowed, prototype requests location use through **window.navigator.requestLocationAuthorization()**.
+
+**geolocation.js:**
+```bash
+import { Notify } from 'quasar'
+export default async ({ Vue }) => {
+  Vue.prototype.$getGeolocation = () => {
+    return new Promise((resolve, reject) => {
+      cordova.plugins.diagnostic.requestLocationAuthorization(function (status) {
+        console.log('entrou no diagnostico', status)
+        if (status === cordova.plugins.diagnostic.permissionStatus.GRANTED) {
+          window.navigator.geolocation.getCurrentPosition(
+            resolve,
+            reject
+          )
+        } else if (status === cordova.plugins.diagnostic.permissionStatus.DENIED_ONCE) {
+          Notify.create({
+            position: 'top',
+            timeout: 2500,
+            color: 'negative',
+            textColor: 'white',
+            actions: [{ icon: 'close', color: 'white' }],
+            message: 'Não foi possível obter a localização.'
+          })
+        }
+      },
+      function (error) {
+        console.log(error)
+        Notify.create({
+          position: 'top',
+          timeout: 2500,
+          color: 'negative',
+          textColor: 'white',
+          actions: [{ icon: 'close', color: 'white' }],
+          message: 'Não foi possível obter a localização.'
+        })
+      },
+      cordova.plugins.diagnostic.locationAuthorizationMode.ALWAYS)
+    })
+  }
+}
+
+```
+
+
+Add in **config.xml:**
+
+```bash
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 ```

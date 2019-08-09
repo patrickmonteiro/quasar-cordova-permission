@@ -8,7 +8,8 @@ module.exports = function (ctx) {
     boot: [
       'i18n',
       'axios',
-      'camera'
+      'camera',
+      'geolocation'
     ],
 
     css: [
@@ -56,7 +57,9 @@ module.exports = function (ctx) {
 
       // Quasar plugins
       plugins: [
-        'Notify'
+        'Notify',
+        'Dialog',
+        'Loading'
       ]
     },
 
